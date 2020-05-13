@@ -14,7 +14,7 @@ namespace NorthwindApp.View
 {
     public partial class FrmProduct : Form, IBaseView<Product>
     {
-        private readonly ProductController _conttroller;
+        private readonly ProductController _controller;
         private IList<Product> _listOfProduct = new List<Product>();
 
         public FrmProduct()
@@ -22,8 +22,8 @@ namespace NorthwindApp.View
             InitializeComponent();
             InisialisasiListView();
 
-            _conttroller = new ProductController(this);
-            _conttroller.LoadData();
+            _controller = new ProductController(this);
+            _controller.LoadData();
         }
 
         private void InisialisasiListView()
@@ -68,7 +68,7 @@ namespace NorthwindApp.View
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            var frmEntry = new FrmEntry(_conttroller);
+            var frmEntry = new FrmEntry(_controller);
             frmEntry.ShowDialog();
         }
 
@@ -79,7 +79,7 @@ namespace NorthwindApp.View
                 var row = lvwProduct.SelectedIndices[0];
                 var product = _listOfProduct[row];
 
-                var frmEntry = new FrmEntry(product, _conttroller);
+                var frmEntry = new FrmEntry(product, _controller);
                 frmEntry.ShowDialog();
             }
             else // data belum dipilih
@@ -98,7 +98,7 @@ namespace NorthwindApp.View
                 string msg = "Apakah data product '" + product.product_name + "' ingin dihapus ?";
                 if (MessageBox.Show(msg, "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
-                    _conttroller.Delete(product);
+                    _controller.Delete(product);
                 }
             }
             else // data belum dipilih
