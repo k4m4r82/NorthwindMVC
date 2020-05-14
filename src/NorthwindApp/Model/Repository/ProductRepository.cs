@@ -58,8 +58,7 @@ namespace NorthwindApp.Model.Repository
                             unit_in_stock = @unit_in_stock,
                             qty_per_unit = @qty_per_unit
                             where product_id = @product_id";
-                obj.product_id = _context.Conn.Execute(sql, obj);
-                result = 1;
+                result = _context.Conn.Execute(sql, obj);
             }
             catch
             {
@@ -76,8 +75,7 @@ namespace NorthwindApp.Model.Repository
             {
                 var sql = @"delete from products
                             where product_id = @product_id";
-                obj.product_id = _context.Conn.Execute(sql, obj);
-                result = 1;
+                result = _context.Conn.Execute(sql, obj);
             }
             catch
             {
